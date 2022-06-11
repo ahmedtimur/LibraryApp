@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book</title>
+</head>
+<body>
+
+<h1 th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYear()}"></h1>
+
+<form th:method="patch" th:action="@{/library/books/{id}(id=${book.getId()})}" >
+
+    <label for="person">Select user to this book</label>
+    <select th:object="${person}" th:field="*{id}" id="person">
+        <option th:each="i : ${people}" th:value="${i.getId()}" th:text="${i.getName()}"></option>
+    </select>
+
+    <input type="submit" value="Submit"/>
+
+</form>
+
+<form th:method="patch" th:action="@{/library/books/{id}/release(id=${book.getId()})}">
+    <input type="submit" value="Release"/>
+</form>
+
+<div>
+    <a th:href="@{/library/books/{id}/update(id=${book.getId()})}">
+        <button>Update</button>
+    </a>
+</div>
+
+<form th:method="delete" th:action="@{/library/books/{id}/delete(id=${book.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+<div>
+    <a th:href="@{/library/books}">
+        <button>Go back</button>
+    </a>
+</div>
+
+</body>
+</html>

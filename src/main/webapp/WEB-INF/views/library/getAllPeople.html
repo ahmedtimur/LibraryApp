@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Get All</title>
+</head>
+<body>
+
+<h1 style="text-align: center; color: red; margin-top: 50px">Clients list</h1>
+
+<div th:each="i : ${people}">
+    <a th:href="@{/library/{id}(id=${i.id})}" th:text="${i.getName() + ', ' + i.getAge()}"></a>
+</div>
+
+<br/>
+<hr/>
+
+<a th:href="@{/library/save}">
+    <button>Add new Person</button>
+</a>
+
+<a th:href="@{/library/books}">
+    <button>Go to books</button>
+</a>
+
+</body>
+</html>
